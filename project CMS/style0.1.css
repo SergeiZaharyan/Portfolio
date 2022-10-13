@@ -60,7 +60,7 @@
 }
     .dashbord {
         display: inline-block;
-        background-color:rgb(224, 224, 22);
+        background-color:rgb(254, 254, 254);
         height: 976px;
         width: 836px;
 }
@@ -165,13 +165,10 @@
                 width: 255px;
                 height: 60px;
             }
-               
-            .display-period {
-
-            }
         .dashbord-information {
             display: flex;
             justify-content: space-between;
+            width: 740px;
             padding-left: 50px;
             padding-right: 50px;
 }
@@ -237,7 +234,12 @@
                     margin-bottom: 0;
                     padding-bottom: 4px;
                 }
-
+                .information-gradient{
+                    background: linear-gradient( 45deg, #c7d0ec, 10%, #dcbfdc);
+                }
+                .information-color{
+                    background-color: #b7dce5;
+                }
 .background-info {
     opacity: 0.75;
     display: block;
@@ -248,18 +250,254 @@
     top: 50%;
     transform: translate(0, -50%);
 }
+.dashbord1{
+    background-color: rgb(255, 210, 127 0);
+    width: 766px;
+    height: 426px;
+    margin-left: 40px;
+    margin-top: 40px;
+
+}
+.dashbord-conteiner1{
+    width: 100%;
+}
+.header-profit{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    width: 100%;
+    margin-bottom: 40px;
+}
+.header1{
+    display: block;
+    width: fit-content;
+    margin-left: 0;
+}
+.btn-profit{
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: space-between;
+    width: fit-content;
+    height: fit-content;
+    margin-right: 35px;
+    background-color: rgb(0, 0, 0, 0);
+    border: none;
+    padding: 0 2px;
+}
+
+.btn-profit:hover {
+
+border-radius: 7px;
+background-color: #b7dce5;
+opacity: 0.7;
+}
+.btn-profit:focus {
+border-radius: 7px;
+background-color: #b7dce5;
+opacity: unset;
+}
+.btn-profit-icon{
+    width: 10px;
+    height: 10px;
+    margin-top: 3px;
+    margin-bottom: 0;
+    padding: 0;
+}
+.btn-profit-icon-size{
+    width: 16px;
+    height: 16px;
+    padding: 0;
+}
+.btn-profit-margin{
+    margin-right: 2px;
+    margin-left: 40px;
+}
+.btn-profit p{
+    margin-left: 7px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.index-profit{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 45px;
+    height: 288px;
+    font-size: 12px;
+    border-right: solid 2px #afafaf;
+    color: #afafaf;
+    font-weight: 600;
+}
+.vertical-scale{
+    width: 41px;
+    height: 14px;
+
+}
+.conteiner-months-btn{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 30px;
+}
+.months-btn{
+    width: 62px;
+    height: 40px;
+    border-radius: 17px;
+    border: none;
+    background-color:rgb(0, 0, 0, 0);
+    color: #afafaf;
+    font-weight: 600;
+}
+.months-btn:focus{
+    background-color:rgb(0, 0, 0);
+}
+
+
 .objects-block {
-    background-color:rgb(0, 255, 98);
+    display: flex;
+    flex-direction: column;
+    background-color:rgb(253, 253, 253);
     height: 976px;
     width: 453px;
     border-top-right-radius: 27px;
     border-bottom-right-radius: 27px;
+    align-items: center;
+    align-content: center;
 } 
-ul {list-style-type: none;
+.objects-img{
+    box-sizing: border-box;
+    width: 371px;
+    height: 393px;
+    border-radius: 51px;
+    margin-left: 0 auto;
+    margin-right: 0 auto;
+    margin-top: 75px;
+    margin-bottom: 30px;
 }
-ul.months-btn li {
-    list-style-type: none;
-    display: inline;
-    margin-right: 5px; /* Отступ слева */
-    border: 1px solid rgb(0, 0, 0); /* Рамка вокруг текста */
-    padding: 3px;}
+.object-bar{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    height: 478px;
+    width: 100%;
+}
+.bar-conteiner{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    align-content: space-around;
+   
+    height: 100%;
+}
+.bar-control{
+    width: 371px;
+    display: flex;
+    justify-content: space-between;
+}
+.objects-information{
+    display: flex;
+    justify-content: space-around;
+}
+.btn-object{
+    box-sizing: border-box;
+    width: fit-content;
+    height: fit-content;
+    width: 100px;
+    height: 38px;
+    border-radius: 17px;
+    border: none;
+    background-color:rgb(0, 0, 0, 0);
+    color: #383737;
+    font-weight: 600;
+}
+.btn-object:focus{
+    background-color:#b7dce5;
+    align-items: center;
+    align-self: center;
+    align-content: center;
+}
+.icon-btn-object{
+    width: 14px;
+    height: 14px;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    align-self: center;
+    align-content: center;
+
+}
+.btn-object-more{
+    align-content: center;
+    align-self: center;
+    box-sizing: border-box;
+    width: fit-content;
+    height: fit-content;
+    width: 20px;
+    height: 38px;
+    padding: 2px;
+    border-radius: 17px;
+    border: none;
+    background-color:rgb(0, 0, 0, 0);
+    color: #383737;
+    font-weight: 600;
+    margin-left: 150px;
+}
+.btn-object-more:focus{
+    background-color:#b7dce5;
+}
+.bar-conteiner{
+    width: 371px;
+}
+.objects-information{
+    width: 100%;
+    height: 122px;
+    display: flex;
+    justify-content: space-between;
+    align-self: center;
+    align-content: center;
+    align-items: center;
+    border-radius: 41px;
+    border: 0;
+    padding: 25px 40px 25px 25px ;
+    background-color: rgb(0, 0, 0, 0);
+}
+.objects-information:hover{
+    border: solid 1px #afafaf;
+}
+.objects-information:focus{
+    background-color: rgb(0, 0, 0);
+    color: #afafaf;
+}
+.img-obj{
+    width: 73px;
+    height: 73px;
+    border-radius: 24px;
+}
+.name-obj{ 
+    margin-right: 55px;}
+.interest1{
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    align-self: center;
+}
+.icon-interest{
+    display: block;
+    margin: 0;
+    padding: 2px;
+    width: 11px;
+    height: 11px;
+    align-content: center;
+    align-items: center;
+    align-self: center;
+    margin-right: 8px;
+
+}
+.change-int{
+    display: block;
+}
