@@ -17,7 +17,6 @@ function isСhangeСolor () {
 };
 isСhangeСolor ();
 buttonChange = true;
-console.log(buttonChange);
 };});
 
 buttonDarkMode.addEventListener('click', (event) => {
@@ -39,10 +38,7 @@ buttonDarkMode.addEventListener('click', (event) => {
 
     const buttonNumber = document.querySelectorAll(".keybord__btn_color");
     const buttonOperators = document.querySelectorAll(".keybord__btn_color-red");
-
     const buttonReset = document.querySelector(".keybord__btn_color-aqua");
-
-    console.log(buttonNumber);
     const innerConteiner = document.querySelector(".values-conteiner__value-string_size");
     const outputConteiner = document.getElementById("output");
 //     let arr=[{  operand1: '',
@@ -80,7 +76,6 @@ buttonNumber.forEach(element => {
  let operator = buttonOperators.forEach(element => {
         element.addEventListener('click', (event) =>{
         event.preventDefault;
-        console.log(element.innerHTML);
         switch(element.innerHTML){
             case '+': 
             innerConteiner.innerHTML = innerConteiner.innerHTML + ' + ';
