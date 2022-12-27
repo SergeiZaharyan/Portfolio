@@ -17,6 +17,7 @@ function isСhangeСolor () {
 };
 isСhangeСolor ();
 buttonChange = true;
+console.log(buttonChange);
 };});
 
 buttonDarkMode.addEventListener('click', (event) => {
@@ -40,37 +41,43 @@ buttonDarkMode.addEventListener('click', (event) => {
     const buttonOperators = document.querySelectorAll(".keybord__btn_color-red");
     const buttonReset = document.querySelector(".keybord__btn_color-aqua");
     const innerConteiner = document.querySelector(".values-conteiner__value-string_size");
-    const outputConteiner = document.getElementById("output");
-//     let arr=[{  operand1: '',
-//                 operator: '', 
-//                 operand2: ''
-//     },];
-//     for (const numbers of buttonNumber) {
-        
-//     numbers.addEventListener('click', (event) => {
-// event.preventDefault();
-// console.log(numbers);
-// let innerResult = arr[0].operand1 + numbers.innerHTML;
-// arr[0].operand1 = innerResult;
-// console.log(innerResult);
-// innerConteiner.innerHTML =`${innerResult}`;
+    const output = document.getElementById("output");
 
-//     })}
-let innerResult;
 
+        let a = "";
+        let b = "";
+        let c = "";
 buttonNumber.forEach(element => { 
+    console.log(element);
     element.addEventListener('click', (event) =>{
         event.preventDefault;
-        innerConteiner.innerHTML = innerConteiner.innerHTML + element.innerHTML ;
-        // innerConteiner.innerHTML =`${innerResult}`;
+        
+        console.log(c);
 
+        innerConteiner.innerHTML = innerConteiner.innerHTML + element.innerHTML ;
+        if( c != "") {
+            b = b + element.innerHTML ;
+        } else
+        {
+            a = a + element.innerHTML ;
+        };
+        console.log(typeof(a));
+        console.log(`A ${a}`);
+        console.log(`B ${b}`);
+         a = a;
+         b = b;
     })
     
 });
  buttonReset.addEventListener('click', (event) => {
-        event.preventDefault;
-        innerConteiner.innerHTML ='';
-        outputConteiner.innerHTML='0';
+    event.preventDefault;
+    innerConteiner.innerHTML ='';
+    a = "";
+    b = "";
+    c = "";
+    
+    console.log(operator);
+
  });
 
  let operator = buttonOperators.forEach(element => {
@@ -78,26 +85,38 @@ buttonNumber.forEach(element => {
         event.preventDefault;
         switch(element.innerHTML){
             case '+': 
-            innerConteiner.innerHTML = innerConteiner.innerHTML + ' + ';
-     
+            innerConteiner.innerHTML = innerConteiner.innerHTML + '+';
+            c = '+';
+
             break;
         
             case '-': 
-            innerConteiner.innerHTML = innerConteiner.innerHTML + ' - ';
+            innerConteiner.innerHTML = innerConteiner.innerHTML + '-';
+            c = '-';
+            
             break;
     
             case 'x': 
-            innerConteiner.innerHTML = innerConteiner.innerHTML + ' * ';
+            innerConteiner.innerHTML = innerConteiner.innerHTML + 'x';
+            c = '*';
             break;
     
             case '÷': 
-            innerConteiner.innerHTML = innerConteiner.innerHTML + ' / ';
+            innerConteiner.innerHTML = innerConteiner.innerHTML + '÷';
+            c = '/';
             break;
     
             case '=': 
-            outputConteiner.innerHTML = eval(innerConteiner.innerHTML).toFixed(3);
+           
+            innerConteiner.innerHTML = innerConteiner.innerHTML + '=';
+            output.innerHTML = (parseFloat(a) + Number(c) + parseFloat(b));
+            
+
+           console.log(typeof((parseFloat(a) + Number(c) + parseFloat(b))));
+           console.log(Number(c));
             break;
         };
+
     })});
     
     

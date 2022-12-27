@@ -80,23 +80,20 @@
 
 .btn__icon_color-crescent {fill: var(--color-button-light-on);}
 .calc-conteiner__values-conteiner{
-    width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: end;
 }
 .values-conteiner__value-string {
-    width: 85%;
+    
     color: var(--color-font);
-    font-size: 33px;
-    text-align: end;
+font-size: 33px;
 }
 .values-conteiner__value-string_size{
-    height: 18px;
+    margin-left: 25%;
     display: inline-block;
     width: 90%;
     font-size: 16px;
-    text-align: start;
 }
 .values-conteiner__btn{}
 .calc-conteiner__keybord{
