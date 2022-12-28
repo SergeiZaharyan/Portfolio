@@ -17,7 +17,6 @@ function isСhangeСolor () {
 };
 isСhangeСolor ();
 buttonChange = true;
-console.log(buttonChange);
 };});
 
 buttonDarkMode.addEventListener('click', (event) => {
@@ -42,17 +41,20 @@ buttonDarkMode.addEventListener('click', (event) => {
     const buttonReset = document.querySelector(".keybord__btn_color-aqua");
     const innerConteiner = document.querySelector(".values-conteiner__value-string_size");
     const output = document.getElementById("output");
+    const equals = document.getElementById("equals");
 
 
         let a = "";
         let b = "";
         let c = "";
-buttonNumber.forEach(element => { 
-    console.log(element);
-    element.addEventListener('click', (event) =>{
+        
+        innerConteiner.innerHTML = `${a}` + `${c}` + `${b}`;
+       
+        buttonNumber.forEach(element => { 
+        console.log(element);
+        element.addEventListener('click', (event) =>{
         event.preventDefault;
         
-        console.log(c);
 
         innerConteiner.innerHTML = innerConteiner.innerHTML + element.innerHTML ;
         if( c != "") {
@@ -61,62 +63,84 @@ buttonNumber.forEach(element => {
         {
             a = a + element.innerHTML ;
         };
-        console.log(typeof(a));
-        console.log(`A ${a}`);
-        console.log(`B ${b}`);
+        
          a = a;
          b = b;
-    })
+         innerConteiner.innerHTML = `${a}` + `${c}` + `${b}`;
+    });
     
 });
+
  buttonReset.addEventListener('click', (event) => {
     event.preventDefault;
     innerConteiner.innerHTML ='';
     a = "";
     b = "";
     c = "";
+    output.innerHTML = "";
     
-    console.log(operator);
+    innerConteiner.innerHTML = `${a}` + `${c}` + `${b}`;
 
  });
 
- let operator = buttonOperators.forEach(element => {
+ const operator = buttonOperators.forEach(element => {
         element.addEventListener('click', (event) =>{
         event.preventDefault;
+        console.log(c);
         switch(element.innerHTML){
             case '+': 
-            innerConteiner.innerHTML = innerConteiner.innerHTML + '+';
-            c = '+';
-
+            // innerConteiner.innerHTML = innerConteiner.innerHTML + '+';
+             c = '+';
+             innerConteiner.innerHTML = `${a}` + `${c}` + `${b}`;
             break;
         
             case '-': 
-            innerConteiner.innerHTML = innerConteiner.innerHTML + '-';
-            c = '-';
-            
+            // innerConteiner.innerHTML = innerConteiner.innerHTML + '-';
+             c = '-';
+             innerConteiner.innerHTML = `${a}` + `${c}` + `${b}`;
             break;
     
             case 'x': 
-            innerConteiner.innerHTML = innerConteiner.innerHTML + 'x';
-            c = '*';
+            // innerConteiner.innerHTML = innerConteiner.innerHTML + 'x';
+             c = '*';
+             innerConteiner.innerHTML = `${a}` + `${c}` + `${b}`;
             break;
     
             case '÷': 
-            innerConteiner.innerHTML = innerConteiner.innerHTML + '÷';
+            // innerConteiner.innerHTML = innerConteiner.innerHTML + '÷';
             c = '/';
+            innerConteiner.innerHTML = `${a}` + `${c}` + `${b}`;
             break;
     
-            case '=': 
-           
-            innerConteiner.innerHTML = innerConteiner.innerHTML + '=';
-            output.innerHTML = (parseFloat(a) + Number(c) + parseFloat(b));
-            
-
-           console.log(typeof((parseFloat(a) + Number(c) + parseFloat(b))));
-           console.log(Number(c));
+            case '=':
             break;
         };
 
     })});
     
+    equals.addEventListener('click', (event) => {
+        event.preventDefault;
+        switch(c){
+            case '+':        
+            c = a + b;
+            output.innerHTML = c;
+            break;
+        
+            case '-': 
+            c = a - b;
+            output.innerHTML = c;
+            
+            break;
+    
+            case 'x': 
+            c = a * b;
+            output.innerHTML = c;
+            break;
+    
+            case '÷': 
+            c = a / b;
+            output.innerHTML = c;
+            break;
+
+    }})
     
