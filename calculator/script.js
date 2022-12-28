@@ -48,10 +48,8 @@ buttonDarkMode.addEventListener('click', (event) => {
         let b = "";
         let c = "";
         
-        innerConteiner.innerHTML = `${a}` + `${c}` + `${b}`;
        
         buttonNumber.forEach(element => { 
-        console.log(element);
         element.addEventListener('click', (event) =>{
         event.preventDefault;
         
@@ -63,84 +61,85 @@ buttonDarkMode.addEventListener('click', (event) => {
         {
             a = a + element.innerHTML ;
         };
-        
+    
          a = a;
          b = b;
-         innerConteiner.innerHTML = `${a}` + `${c}` + `${b}`;
-    });
-    
+        
+});});
+
+buttonReset.addEventListener('click', (event) => {
+        event.preventDefault;
+        innerConteiner.innerHTML ='';
+        a = "";
+        b = "";
+        c = "";
+        output.innerHTML = "";
+
+
 });
 
- buttonReset.addEventListener('click', (event) => {
-    event.preventDefault;
-    innerConteiner.innerHTML ='';
-    a = "";
-    b = "";
-    c = "";
-    output.innerHTML = "";
-    
-    innerConteiner.innerHTML = `${a}` + `${c}` + `${b}`;
+const operator = buttonOperators.forEach(element => {
 
- });
-
- const operator = buttonOperators.forEach(element => {
         element.addEventListener('click', (event) =>{
         event.preventDefault;
-        console.log(c);
+
         switch(element.innerHTML){
+
             case '+': 
-            // innerConteiner.innerHTML = innerConteiner.innerHTML + '+';
+            
              c = '+';
              innerConteiner.innerHTML = `${a}` + `${c}` + `${b}`;
             break;
         
             case '-': 
-            // innerConteiner.innerHTML = innerConteiner.innerHTML + '-';
+            
              c = '-';
              innerConteiner.innerHTML = `${a}` + `${c}` + `${b}`;
             break;
     
             case 'x': 
-            // innerConteiner.innerHTML = innerConteiner.innerHTML + 'x';
+            
              c = '*';
-             innerConteiner.innerHTML = `${a}` + `${c}` + `${b}`;
+             innerConteiner.innerHTML = `${a}` + `${`x`}` + `${b}`;
             break;
     
             case '÷': 
-            // innerConteiner.innerHTML = innerConteiner.innerHTML + '÷';
+            
             c = '/';
-            innerConteiner.innerHTML = `${a}` + `${c}` + `${b}`;
+            innerConteiner.innerHTML = `${a}` + `${`÷`}` + `${b}`;
             break;
     
             case '=':
             break;
         };
 
-    })});
+});});
     
-    equals.addEventListener('click', (event) => {
+equals.addEventListener('click', (event) => {
         event.preventDefault;
+
         switch(c){
             case '+':        
-            c = a + b;
+            c = parseFloat(a) + parseFloat(b);
             output.innerHTML = c;
             break;
         
             case '-': 
-            c = a - b;
+            c = parseFloat(a) - parseFloat(b);
             output.innerHTML = c;
             
             break;
     
-            case 'x': 
-            c = a * b;
+            case '*': 
+            c = parseFloat(a) * parseFloat(b);
             output.innerHTML = c;
             break;
     
-            case '÷': 
-            c = a / b;
+            case '/': 
+            c = parseFloat(a) / parseFloat(b);
             output.innerHTML = c;
             break;
 
-    }})
+        };
+});
     
