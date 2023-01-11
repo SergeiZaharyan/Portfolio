@@ -43,103 +43,113 @@ buttonDarkMode.addEventListener('click', (event) => {
     const output = document.getElementById("output");
     const equals = document.getElementById("equals");
 
-
-        let a = "";
-        let b = "";
-        let c = "";
+    let a = "";
+    let b = "";
+    let c = "";
         
-       
-        buttonNumber.forEach(element => { 
-        element.addEventListener('click', (event) =>{
-        event.preventDefault;
-        
-
-        innerConteiner.innerHTML = innerConteiner.innerHTML + element.innerHTML ;
-        if( c != "") {
-            b = b + element.innerHTML ;
-        } else
-        {
-            a = a + element.innerHTML ;
-        };
-    
-         a = a;
-         b = b;
-        
-});});
-
-buttonReset.addEventListener('click', (event) => {
-        event.preventDefault;
-        innerConteiner.innerHTML ='';
-        a = "";
-        b = "";
-        c = "";
-        output.innerHTML = "";
-
-
-});
-
-const operator = buttonOperators.forEach(element => {
-
-        element.addEventListener('click', (event) =>{
-        event.preventDefault;
-
-        switch(element.innerHTML){
-
-            case '+': 
-            
-             c = '+';
-             innerConteiner.innerHTML = `${a}` + `${c}` + `${b}`;
-            break;
+    const equalsButton = () => {
+        switch(c) {
+            case '+':
+                c = parseFloat(a) + parseFloat(b);
+                output.innerHTML = c;
+                break;
         
             case '-': 
+                c = parseFloat(a) - parseFloat(b);
+                output.innerHTML = c;
+                break;
+    
+            case '*': 
+                c = parseFloat(a) * parseFloat(b);
+                output.innerHTML = c;
+                break;
+    
+            case '/': 
+                c = parseFloat(a) / parseFloat(b);
+                output.innerHTML = c;
+                break;
+        };
+    };   
+
+    const isChangeOfTransferred = (change) => {
+        if(c) {
+            b = b + change ;
+        } else{
+            a = a + change ;
+        };
+    };
+
+    const isChangeOperator = (operator) => {
+        switch(operator) {
             
-             c = '-';
-             innerConteiner.innerHTML = `${a}` + `${c}` + `${b}`;
+        case '+': 
+            c = '+';
+            innerConteiner.innerHTML = `${a}` + `${c}` + `${b}`;
             break;
     
-            case 'x': 
-            
-             c = '*';
-             innerConteiner.innerHTML = `${a}` + `${`x`}` + `${b}`;
+        case '-': 
+            c = '-';
+            innerConteiner.innerHTML = `${a}` + `${c}` + `${b}`;
             break;
     
-            case '÷': 
-            
+        case 'x': 
+            c = '*';
+            innerConteiner.innerHTML = `${a}` + `${`x`}` + `${b}`;
+            break;
+    
+        case '*': 
+            c = '*';
+            innerConteiner.innerHTML = `${a}` + `${`x`}` + `${b}`;
+            break;
+    
+        case '÷': 
             c = '/';
             innerConteiner.innerHTML = `${a}` + `${`÷`}` + `${b}`;
             break;
     
-            case '=':
+        case '/':
+            c = '/';
+            innerConteiner.innerHTML = `${a}` + `${`÷`}` + `${b}`;
             break;
-        };
-
-});});
     
-equals.addEventListener('click', (event) => {
+        case '=':
+            equalsButton();
+            break;
+    };}
+
+        buttonNumber.forEach(element => { 
+        element.addEventListener('click', (event) =>{
         event.preventDefault;
-
-        switch(c){
-            case '+':        
-            c = parseFloat(a) + parseFloat(b);
-            output.innerHTML = c;
-            break;
-        
-            case '-': 
-            c = parseFloat(a) - parseFloat(b);
-            output.innerHTML = c;
-            
-            break;
+        innerConteiner.innerHTML = innerConteiner.innerHTML + element.innerHTML;
+        isChangeOfTransferred(element.innerHTML);
     
-            case '*': 
-            c = parseFloat(a) * parseFloat(b);
-            output.innerHTML = c;
-            break;
-    
-            case '/': 
-            c = parseFloat(a) / parseFloat(b);
-            output.innerHTML = c;
-            break;
-
-        };
+    });
 });
-    
+
+
+buttonReset.addEventListener('click', (event) => {
+    event.preventDefault;
+
+    innerConteiner.innerHTML ='';
+    a = "";
+    b = "";
+    c = "";
+    output.innerHTML = "";
+});
+
+buttonOperators.forEach(element => {
+    element.addEventListener('click', (event) =>{
+        event.preventDefault;
+        isChangeOperator(element.innerHTML);
+
+    });
+});
+document.addEventListener('keyup', asd);
+function asd (e) {
+    e.preventDefault;
+
+    isNaN(parseFloat(e.key)) === false ? 
+    (isChangeOfTransferred(e.key), innerConteiner.innerHTML = innerConteiner.innerHTML + e.key) :
+    (e.key === "-" || "+" || "=" || "x" || "*Shift" || "÷" || "/") ? isChangeOperator(e.key) : false;
+};
+
