@@ -21,7 +21,7 @@ buttonLightMode.addEventListener("click", (event) => {
 buttonDarkMode.addEventListener("click", (event) => {
   event.preventDefault();
 
-  if (buttonChange == !false) {
+  if (buttonChange !== false) {
     isСhangeСolorLight();
     buttonChange = false;
   }
@@ -60,7 +60,7 @@ const equalsButton = () => {
 
     case "/":
       d = parseFloat(a) / parseFloat(b);
-      d = Infinity ? (output.innerHTML = 0) : (output.innerHTML = d);
+      d === Infinity ? (output.innerHTML = 0) : (output.innerHTML = d);
       break;
   }
 };
@@ -74,7 +74,7 @@ const isChangeOfTransferred = (change) => {
 };
 
 const isChangeOperator = (operator) => {
-  switch (operator) {
+  switch (a && operator) {
     case "+":
       c = "+";
       innerConteiner.innerHTML = `${a}` + `${c}` + `${b}`;
@@ -106,7 +106,7 @@ const isChangeOperator = (operator) => {
       break;
 
     case "=":
-      equalsButton();
+      a && c && b ? equalsButton() : false;
       break;
   }
 };
@@ -141,19 +141,25 @@ buttonReset.forEach((element) => {
       d = "";
       output.innerHTML = "";
     } else if (element.innerHTML === "%") {
-      d === ""
-        ? b === ""
-          ? (output.innerHTML = a / 100)
-          : ((b = b / 100),
-            (innerConteiner.innerHTML = `${a}` + `${c}` + `${b}`))
-        : (output.innerHTML = d / 100);
+      a
+        ? !d
+          ? b === "" && a
+            ? (output.innerHTML = a / 100)
+            : ((b = b / 100),
+              (innerConteiner.innerHTML = `${a}` + `${c}` + `${b}`))
+          : (output.innerHTML = d / 100)
+        : false;
     } else if (element.innerHTML === "±") {
-      !d
-        ? !b
-          ? ((a = -a), (innerConteiner.innerHTML = `${a}` + `${c}` + `${b}`))
-          : ((b = -b), (innerConteiner.innerHTML = `${a}` + `${c}` + `${b}`))
-        : (d = d * -1),
-        (output.innerHTML = d);
+      a
+        ? (!d && a
+            ? !b && a
+              ? ((a = -a),
+                (innerConteiner.innerHTML = `${a}` + `${c}` + `${b}`))
+              : ((b = -b),
+                (innerConteiner.innerHTML = `${a}` + `${c}` + `${b}`))
+            : (d = d * -1),
+          (output.innerHTML = d))
+        : false;
     } else if (element.innerHTML !== "±" && "%" && "AC") {
       d.toString().length > 0
         ? ((d = d.toString().slice(0, -1)), (output.innerHTML = d))
