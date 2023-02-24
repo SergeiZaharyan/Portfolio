@@ -192,7 +192,6 @@ color: var(--color-font);
         justify-content: space-between;
         width: 100%;
         height: 100%;
-        border-radius: 5vw;
         background-color: var(--color-background);
     }
     .calc-conteiner__conteiner-dark-mode{
