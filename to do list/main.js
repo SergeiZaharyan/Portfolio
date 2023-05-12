@@ -8,68 +8,117 @@ const inputTaskAdd = document.querySelector(".conteiner-input_input");
 const listContainerBody = document.querySelector(".list-container_body");
 const containerTask = [];
 
-function isShowAss() {
-  for (let i = 0; i < containerTask.length; i++) {
-    const card = document.createElement(`div`);
-    card.className = `list-container_body__task-cards`;
-    const cardBtnDone = document.createElement(`button`);
-    cardBtnDone.className = `task-cards_btn-done`;
-    cardBtnDone.innerHTML = `ok`;
-    const cardTask = document.createElement(`p`);
-    cardTask.className = `task-cards_task`;
-    cardTask.innerHTML = `${containerTask[i].name}`;
-    const cardDelete = document.createElement(`button`);
-    cardDelete.className = `task-cards_btn-clean`;
-    cardDelete.innerHTML = `x`;
-    listContainerBody.append(card);
-    card.append(cardBtnDone);
-    card.append(cardTask);
-    card.append(cardDelete);
-    const btnTaskDone = document.querySelectorAll(".task-cards_btn-done");
-    const btnTaskClean = document.querySelectorAll(".task-cards_btn-clean");
-
-    btnTaskClean.forEach((element, i, arr) => {
-      element.addEventListener("click", (e) => {
-        e.preventDefault;
-        console.log(arr);
-        arr[i].parentElement.remove();
-        containerTask.splice(i, 1);
-      });
-    });
-    // for (let elem of btnTaskDone) {
-    //   elem.addEventListener("click", (e) => {
-    //     e.preventDefault;
-    //     if (elem.innerHTML === "ok") {
-    //       elem.innerHTML = "done";
-    //     } else if (elem.innerHTML === "done") {
-    //       elem.innerHTML = "ok";
-    //     }
-    //     console.log(elem);
-    //   });
-    // }
-
-      btnTaskDone.forEach((element, i, arr) => {
-        element.addEventListener("click", (e) => {
-          e.preventDefault;
-          console.log(arr);
-
-      if (element.innerHTML === "ok") {
-        element.innerHTML = "done";
-
-      } else  if (element.innerHTML === "done"){
-        element.innerHTML = "ok";
-     };})});
-  }
+function createCardInArray(listContainerBody) {
+  containerTask.push({
+    id: containerTask.length + 1,
+    text: inputTaskAdd.value,
+  });
+  const cards = containerTask
+    .map((card) => {
+      return generateCardDOM(card.id, card.text);
+    })
+    .join("");
+  listContainerBody.innerHTML = cards;
 }
 
-btnAddTask.addEventListener("click", () => {
-  containerTask.unshift({
-    id: containerTask.length + 1,
-    name: inputTaskAdd.value,
-    done: "no",
-  });
-  console.log(containerTask);
-  listContainerBody.replaceChildren();
-  isShowAss();
+const generateCardDOM = (id, text) => {
+  return `
+    <div class = "list-container_body__task-cards">
+    <button class = "task-cards_btn-done">ok</button>
+    <p class = "task-cards_task">${id}. ${text}</p>
+    <button class = "task-cards_btn-clean">x</button>
+    </div>
+  `;
+};
+
+const btnTaskDone = document.querySelectorAll(".task-cards_btn-done");
+const btnTaskClean = document.querySelectorAll(".task-cards_btn-clean");
+
+function deleteCard(e) {
+  const currentButton = e.currentTarget;
+  currentButton.closest(".list-container_body__task-cards").remove();
+  console.log(listContainerBody.innerHTML);
+}
+btnTaskClean.forEach((btn) => {
+  btn.addEventListener("click", deleteCard);
 });
-isShowAss();
+
+btnAddTask.addEventListener("click", () => {
+  createCardInArray(listContainerBody);
+});
+// const createDeletBtnCard = (addCard) => {
+
+//   const createCleanDOM = document.createElement(`button`);
+//   createCleanDOM.className = `task-cards_btn-clean`;
+//   createCleanDOM.innerHTML = `x`;
+// };
+
+// const createDoneBtnCard = (addCard) => {
+
+//   const createDoneDOM = document.createElement(`button`);
+//   createDoneDOM.className = `task-cards_btn-done`;
+//   createDoneDOM.innerHTML = `ok`;
+// };
+
+//   // Создать карточку и добавить ее в массив и dom тут
+//   // ...
+//   // Создай кнопки удалить и добавить и сохрани их в массив тоже
+//   // Массив итоговый должен выглядеть примерно вот так:
+//   /**
+//    * [
+//    *  {
+//    *    html: card,
+//    *    text: 'Some text on card',
+//    *    done: btnTaskDone,
+//    *    clean: btnTaskClean,
+//    *  },
+//    *  {
+//    *   html: card,
+//    *   text: 'Blah-blah text',
+//    *   done: btnTaskDone,
+//    *   clean: btnTaskClean,
+//    *  }
+//    * ]
+//    */
+
+//   /**
+//    * Каждый раз когда ты создаешь карточку ты должен записать в массив как саму карточку, так и все принадлежащие ей кнопки.
+//    * Тогда при нажатии на кнопку очистки ты сможешь удалить карточку через parentelement, а из массива удалить элемент с помощью поиска по полю 'text'.
+//    */
+
+//   // Примерная логика вызова функций:
+//   // const card = addCard(text);
+//   // const done = createDoneBtnCard(card); // обрати внимание что созданную карточку я передаю в создание кнопок, чтобы они ссылались на карточку
+//   // const clean = createDeletBtnCard(card); // так же хэнлдеры для удаления можно навесить после создания элементов
+
+// //   done.addEventListener('click', () => {
+// //     findAndDeleteCard(card);
+// //   });
+// //   clean.addEventListener('click', () => {
+// //     findAndCleanCard(card);
+// //   });
+// // e
+
+// function createCardElement() {
+//  // TODO создать карточку в хтмл и добавить в дом
+// }
+
+// function createDeleteButtonElement(card) {
+//  // TODO создать кнопку удаления внутри карточки и добавить в дом
+// }
+
+// function deleteCard(card) {
+//  // TODO найти и удалить карточку в массиве
+//  // так же удалить карточку в dom (найдешь карточку в массиве)
+// }
+
+// function addCard() {
+//  const card = createCardElement();
+//  const deleteButton = createDeleteButtonElement(card);
+
+//  deleteButton.addEventListener('click', () => {
+//   deleteCard(card);
+//  });
+
+//  cards.push(card);
+// }
