@@ -15,10 +15,11 @@ function createCardInArray(listContainerBody) {
   });
   const cards = containerTask
     .map((card) => {
-      return generateCardDOM(card.id, card.text);
+      return generateCardDOM(containerTask.indexOf(card) + 1, card.text);
     })
     .join("");
   listContainerBody.innerHTML = cards;
+  inputTaskAdd.value = "";
 }
 
 const generateCardDOM = (id, text) => {
@@ -31,94 +32,27 @@ const generateCardDOM = (id, text) => {
   `;
 };
 
-const btnTaskDone = document.querySelectorAll(".task-cards_btn-done");
-const btnTaskClean = document.querySelectorAll(".task-cards_btn-clean");
-
-function deleteCard(e) {
-  const currentButton = e.currentTarget;
-  currentButton.closest(".list-container_body__task-cards").remove();
-  console.log(listContainerBody.innerHTML);
+// const btnTaskDone = document.querySelectorAll(".task-cards_btn-done");
+function deleteCard(elemDelete) {
+  let id = parseInt(elemDelete.querySelector(`p`).innerHTML);
+  let indexElementArr = containerTask.indexOf(
+    containerTask.find((el) => el.id === id)
+  );
+  containerTask.splice(indexElementArr, 1);
+  elemDelete.remove();
+  const cards = containerTask
+    .map((card) => {
+      return generateCardDOM(containerTask.indexOf(card) + 1, card.text);
+    })
+    .join("");
+  listContainerBody.innerHTML = cards;
 }
-btnTaskClean.forEach((btn) => {
-  btn.addEventListener("click", deleteCard);
-});
 
+listContainerBody.addEventListener("click", (e) => {
+  if (e.target.classList.contains("task-cards_btn-clean")) {
+    deleteCard(e.target.parentElement);
+  }
+});
 btnAddTask.addEventListener("click", () => {
   createCardInArray(listContainerBody);
 });
-// const createDeletBtnCard = (addCard) => {
-
-//   const createCleanDOM = document.createElement(`button`);
-//   createCleanDOM.className = `task-cards_btn-clean`;
-//   createCleanDOM.innerHTML = `x`;
-// };
-
-// const createDoneBtnCard = (addCard) => {
-
-//   const createDoneDOM = document.createElement(`button`);
-//   createDoneDOM.className = `task-cards_btn-done`;
-//   createDoneDOM.innerHTML = `ok`;
-// };
-
-//   // Создать карточку и добавить ее в массив и dom тут
-//   // ...
-//   // Создай кнопки удалить и добавить и сохрани их в массив тоже
-//   // Массив итоговый должен выглядеть примерно вот так:
-//   /**
-//    * [
-//    *  {
-//    *    html: card,
-//    *    text: 'Some text on card',
-//    *    done: btnTaskDone,
-//    *    clean: btnTaskClean,
-//    *  },
-//    *  {
-//    *   html: card,
-//    *   text: 'Blah-blah text',
-//    *   done: btnTaskDone,
-//    *   clean: btnTaskClean,
-//    *  }
-//    * ]
-//    */
-
-//   /**
-//    * Каждый раз когда ты создаешь карточку ты должен записать в массив как саму карточку, так и все принадлежащие ей кнопки.
-//    * Тогда при нажатии на кнопку очистки ты сможешь удалить карточку через parentelement, а из массива удалить элемент с помощью поиска по полю 'text'.
-//    */
-
-//   // Примерная логика вызова функций:
-//   // const card = addCard(text);
-//   // const done = createDoneBtnCard(card); // обрати внимание что созданную карточку я передаю в создание кнопок, чтобы они ссылались на карточку
-//   // const clean = createDeletBtnCard(card); // так же хэнлдеры для удаления можно навесить после создания элементов
-
-// //   done.addEventListener('click', () => {
-// //     findAndDeleteCard(card);
-// //   });
-// //   clean.addEventListener('click', () => {
-// //     findAndCleanCard(card);
-// //   });
-// // e
-
-// function createCardElement() {
-//  // TODO создать карточку в хтмл и добавить в дом
-// }
-
-// function createDeleteButtonElement(card) {
-//  // TODO создать кнопку удаления внутри карточки и добавить в дом
-// }
-
-// function deleteCard(card) {
-//  // TODO найти и удалить карточку в массиве
-//  // так же удалить карточку в dom (найдешь карточку в массиве)
-// }
-
-// function addCard() {
-//  const card = createCardElement();
-//  const deleteButton = createDeleteButtonElement(card);
-
-//  deleteButton.addEventListener('click', () => {
-//   deleteCard(card);
-//  });
-
-//  cards.push(card);
-// }
