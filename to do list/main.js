@@ -9,13 +9,11 @@ const listContainerBody = document.querySelector(".list-container_body");
 const containerTask = [];
 let arr = localStorage.getItem("arr");
 
-
-btnCleanAll.addEventListener('click', deleteAllCard);
+btnCleanAll.addEventListener("click", deleteAllCard);
 function deleteAllCard() {
-  listContainerBody.innerHTML= "";
-    containerTask.splice(0, containerTask.length);
-  
-  }
+  listContainerBody.innerHTML = "";
+  containerTask.splice(0, containerTask.length);
+}
 function createCardInArray(listContainerBody) {
   containerTask.push({
     id: containerTask.length + 1,
@@ -53,21 +51,19 @@ function deleteCard(elemDelete) {
     })
     .join("");
   listContainerBody.innerHTML = cards;
-};
+}
 
-function isDoneCard(elementDone){
-elementDone.classList.toggle("task-cards_btn-done1");
-elementDone.querySelector(`p`).classList.toggle("task-cards_task-done");
-
+function isDoneCard(elementDone) {
+  elementDone.classList.toggle("task-cards_btn-done1");
+  elementDone.querySelector(`p`).classList.toggle("task-cards_task-done");
 }
 
 listContainerBody.addEventListener("click", (e) => {
   if (e.target.classList.contains("task-cards_btn-clean")) {
     deleteCard(e.target.parentElement);
-  };
-  if(e.target.classList.contains("task-cards_btn-done")){
-    isDoneCard(e.target.parentElement)
-
+  }
+  if (e.target.classList.contains("task-cards_btn-done")) {
+    isDoneCard(e.target.parentElement);
   }
 });
 btnAddTask.addEventListener("click", () => {
