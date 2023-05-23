@@ -46,5 +46,5 @@ box-shadow: 0px 0px 2px #beb9b9;
     justify-content: space-between; margin-top: calc( 5 / var(--size-block)); 
     background: linear-gradient(217deg, rgba(164, 223, 243, 0.8), rgba(164, 252, 179, 0.796) 70.71%);
 }
-.task-cards_task{text-decoration: line-through;}
-.task-cards_btn-clean{}
+.task-cards_task-done{text-decoration: line-through;}
+
