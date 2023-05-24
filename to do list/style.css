@@ -26,13 +26,9 @@ box-shadow: 0px 0px 2px #beb9b9;
 .list-container_header__subtitle{
     font-size: calc( 30 / var(--size-block));
 }
-.list-container_header__conteiner-input{
-    
-}
 .list-container_header__notification{
     margin-top: calc( 5 / var(--size-block));
 }
-.list-container_body{}
 .list-container_body__task-cards{
     display: flex;
     width: calc( 550 / var(--size-block)) ;
