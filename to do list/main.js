@@ -17,10 +17,7 @@ function isGetItem() {
   const LS = localStorage.getItem("arr");
   const localArray = JSON.parse(LS);
   if (localArray !== containerTask) {
-    console.log(localArray);
-    console.log(containerTask);
-    containerTask = localArray;
-    console.log(containerTask);
+    localArray ? (containerTask = localArray) : false;
     const cards = containerTask
       .map((card) => {
         return generateCardDOM(containerTask.indexOf(card) + 1, card.text);
