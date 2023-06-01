@@ -20,7 +20,11 @@ function isGetItem() {
     localArray ? (containerTask = localArray) : false;
     const cards = containerTask
       .map((card) => {
-        return generateCardDOM(containerTask.indexOf(card) + 1, card.text);
+        return generateCardDOM(
+          containerTask.indexOf(card) + 1,
+          card.text,
+          card.state
+        );
       })
       .join("");
     listContainerBody.innerHTML = cards;
@@ -38,24 +42,40 @@ function createCardInArray(listContainerBody) {
   containerTask.push({
     id: containerTask.length + 1,
     text: inputTaskAdd.value,
+    state: "not done",
   });
   const cards = containerTask
     .map((card) => {
-      return generateCardDOM(containerTask.indexOf(card) + 1, card.text);
+      return generateCardDOM(
+        containerTask.indexOf(card) + 1,
+        card.text,
+        card.state
+      );
     })
     .join("");
   listContainerBody.innerHTML = cards;
   inputTaskAdd.value = "";
 }
 
-const generateCardDOM = (id, text) => {
-  return `
+const generateCardDOM = (id, text, state) => {
+  console.log(state);
+  if (state === "not done") {
+    return `
     <div class = "list-container_body__task-cards">
     <button class = "task-cards_btn-done">ok</button>
     <p>${id}. ${text}</p>
     <button class = "task-cards_btn-clean">x</button>
     </div>
   `;
+  } else {
+    return `
+    <div class = "list-container_body__task-cards task-cards_btn-done__green">
+    <button class = "task-cards_btn-done">done</button>
+    <p class = "task-cards_task-done" >${id}. ${text}</p>
+    <button class = "task-cards_btn-clean">x</button>
+    </div>
+  `;
+  }
 };
 
 function deleteCard(elemDelete) {
@@ -63,11 +83,16 @@ function deleteCard(elemDelete) {
   let indexElementArr = containerTask.indexOf(
     containerTask.find((el) => el.id === id)
   );
+  console.log(indexElementArr);
   containerTask.splice(indexElementArr, 1);
   elemDelete.remove();
   const cards = containerTask
     .map((card) => {
-      return generateCardDOM(containerTask.indexOf(card) + 1, card.text);
+      return generateCardDOM(
+        containerTask.indexOf(card) + 1,
+        card.text,
+        card.state
+      );
     })
     .join("");
   listContainerBody.innerHTML = cards;
@@ -75,8 +100,20 @@ function deleteCard(elemDelete) {
 }
 
 function isDoneCard(elementDone) {
-  elementDone.classList.toggle("task-cards_btn-done1");
-  elementDone.querySelector(`p`).classList.toggle("task-cards_task-done");
+  elementDone.classList.toggle("task-cards_btn-done__green");
+  const cardText = elementDone.querySelector(`p`);
+  cardText.classList.toggle("task-cards_task-done");
+  const id = parseInt(cardText.innerHTML) - 1;
+  console.log(containerTask[id].state);
+  containerTask[id].state === "done"
+    ? (containerTask[id].state = "not done")
+    : (containerTask[id].state = "done");
+  console.log(containerTask);
+
+  containerTask[id].state === "done"
+    ? (elementDone.querySelector(`button`).innerHTML = "done")
+    : (elementDone.querySelector(`button`).innerHTML = "ok");
+  isSetItem();
 }
 
 listContainerBody.addEventListener("click", (e) => {

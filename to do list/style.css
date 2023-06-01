@@ -37,7 +37,7 @@ box-shadow: 0px 0px 2px #beb9b9;
     background: linear-gradient(217deg, rgba(164, 223, 243, 0.8), rgba(245, 137, 137, 0.796) 70.71%);
     
 }
-.task-cards_btn-done1{
+.task-cards_btn-done__green{
     display: flex; width: calc( 550 / var(--size-block)) ; 
     justify-content: space-between; margin-top: calc( 5 / var(--size-block)); 
     background: linear-gradient(217deg, rgba(164, 223, 243, 0.8), rgba(164, 252, 179, 0.796) 70.71%);
