@@ -28,17 +28,16 @@ let i = 0;
 btnDone.innerHTML = "ok";
 div.append(btnDone, p, btnClean);
 listContainerBody.append(div);
-const btnDoneCard = document.querySelectorAll(".task-cards_btn-done");
-btnDoneCard.forEach(e => { e.addEventListener("click", () =>{
-    console.log(e.parentElement.dataset.id)
-isDoneCard()
-})
+const btnDoneCard = document.querySelector(".task-cards_btn-done");
+btnDoneCard.addEventListener("click", () =>{
+    console.log(btnDoneCard.parentElement.dataset.id)
+isDoneCard()});
 
-});
 btnClean.querySelector("click", () =>{
 
 
 })
+
  }
  function isDoneCard (){
      console.log("done");
