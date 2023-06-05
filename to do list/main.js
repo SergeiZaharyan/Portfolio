@@ -7,6 +7,7 @@ const btnCleanAll = document.querySelector(".conteiner-input_btn-clean");
 const inputTaskAdd = document.querySelector(".conteiner-input_input");
 const listContainerBody = document.querySelector(".list-container_body");
 let containerTask = [];
+let i = 0;
 
 function isSetItem() {
   localStorage.setItem("arr", JSON.stringify(containerTask));
@@ -39,11 +40,13 @@ function deleteAllCard() {
   localStorage.removeItem("arr");
 }
 function createCardInArray(listContainerBody) {
+  
   containerTask.push({
-    id: containerTask.length + 1,
+    id: Date.now(), 
     text: inputTaskAdd.value,
     state: "not done",
   });
+  console.log(containerTask);
   const cards = containerTask
     .map((card) => {
       return generateCardDOM(
@@ -60,13 +63,17 @@ function createCardInArray(listContainerBody) {
 const generateCardDOM = (id, text, state) => {
   console.log(state);
   if (state === "not done") {
-    return `
+    const div = document.createElement("div");
+    div.className = "list-container_body__task-cards";
+
+    `
     <div class = "list-container_body__task-cards">
     <button class = "task-cards_btn-done">ok</button>
     <p>${id}. ${text}</p>
     <button class = "task-cards_btn-clean">x</button>
     </div>
-  `;
+  `
+  ;
   } else {
     return `
     <div class = "list-container_body__task-cards task-cards_btn-done__green">
@@ -100,11 +107,12 @@ function deleteCard(elemDelete) {
 }
 
 function isDoneCard(elementDone) {
+  console.log(document.querySelectorAll(".task-cards_task-done"))
   elementDone.classList.toggle("task-cards_btn-done__green");
   const cardText = elementDone.querySelector(`p`);
   cardText.classList.toggle("task-cards_task-done");
   const id = parseInt(cardText.innerHTML) - 1;
-  console.log(containerTask[id].state);
+  console.log(id, "эта строчка", cardText.innerHTML);
   containerTask[id].state === "done"
     ? (containerTask[id].state = "not done")
     : (containerTask[id].state = "done");
@@ -118,7 +126,9 @@ function isDoneCard(elementDone) {
 
 listContainerBody.addEventListener("click", (e) => {
   if (e.target.classList.contains("task-cards_btn-clean")) {
-    deleteCard(e.target.parentElement);
+    // deleteCard(e.target.parentElement);
+    e.target.parentElement.remove()
+    console.log(e.target.parentElement)
   }
   if (e.target.classList.contains("task-cards_btn-done")) {
     isDoneCard(e.target.parentElement);
@@ -129,3 +139,8 @@ btnAddTask.addEventListener("click", () => {
   isSetItem();
 });
 isGetItem();
+// одна функция (//add генерация карточки через js doc.create и атрибут ид
+// создаем слушатель на клик, два слушателя на доне и делит.
+// вставляем элемент в дом)
+// сохраняем в стор(массив) ключи переменных карточки (ид, текст, стэйт)
+// при удалении карточки удаляем карточку из стора по ид индекс элемента массива
