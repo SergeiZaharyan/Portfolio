@@ -5,6 +5,9 @@ const btnAddTask = document.querySelector(".conteiner-input_btn-add");
 const btnCleanAll = document.querySelector(".conteiner-input_btn-clean");
 const inputTaskAdd = document.querySelector(".conteiner-input_input");
 const listContainerBody = document.querySelector(".list-container_body");
+const notification = document.querySelector(
+  ".list-container_header__notification"
+);
 let containerTask = new Array();
 
 function generateDOM() {
@@ -45,7 +48,7 @@ function createCard(id, text, state) {
   }
   div.append(btnDone, p, btnClean);
   listContainerBody.append(div);
-  //   const btnDoneCard = btnDone.querySelector(".task-cards_btn-done");
+
   btnDone.addEventListener("click", () => {
     console.log(btnDone.parentElement.dataset.id, btnDone.parentElement);
     isDoneCard(btnDone.parentElement, btnDone.parentElement.dataset.id);
@@ -54,6 +57,19 @@ function createCard(id, text, state) {
   btnClean.addEventListener("click", () => {
     isCleanCard(btnClean.parentElement, btnClean.parentElement.dataset.id);
   });
+  console.log(containerTask.length)
+  if (containerTask.length > 3) {
+    notification.innerHTML = "The heat has gone";
+  }
+  if (containerTask.length > 7) {
+    notification.innerHTML = "It's tough";
+  }
+  if (containerTask.length > 10) {
+    notification.innerHTML = "Are you serious?";
+  }
+  if (containerTask.length > 10) {
+    notification.innerHTML = "It's impossible";
+  }
 }
 function isCleanCard(elementClean, elemId) {
   console.log(elementClean.dataset.id);

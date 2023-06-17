@@ -19,7 +19,7 @@
   justify-content: center;
   align-items: center;
   width: 100vw;
-  height: calc(150 / var(--size-block));
+  height: fit-content;
   background-color: rgb(206, 222, 245, 0.7);
   box-shadow: 0px 0px 2px #beb9b9;
 }
@@ -58,14 +58,20 @@
 }
 .task-cards_btn-done {
   width: calc(100 / var(--size-block));
-  height: calc(55 / var(--size-block));
+  height: calc(90 / var(--size-block));
   margin-left: calc(3 / var(--size-block));
   border-radius: calc(5 / var(--size-block));
   margin-top: 0px;
   margin-bottom: 0px;
   justify-content: space-between;
+  font-size: calc(40 / var(--size-block));
+  line-height: calc(25 / var(--size-block));
 }
 .task-cards_btn-clean {
+  width: calc(100 / var(--size-block));
+  height: calc(90 / var(--size-block));
   margin-right: calc(3 / var(--size-block));
   border-radius: calc(5 / var(--size-block));
+  font-size: calc(40 / var(--size-block));
+  line-height: calc(25 / var(--size-block));
 }
