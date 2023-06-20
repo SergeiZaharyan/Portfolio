@@ -30,6 +30,7 @@ function createCard(id, text, state) {
 
   div.setAttribute("data-id", id);
   const p = document.createElement("p");
+  p.className = "task-cards_text-card"
   p.innerHTML = text;
   const btnDone = document.createElement("button");
 
